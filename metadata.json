@@ -1,0 +1,6 @@
+{
+  "name": "GlobalLotto - International Lottery Concierge",
+  "description": "Premier international lottery concierge platform. Play global draws like Powerball, Mega Millions, and EuroMillions with verified digital ticket proof and automatic prize matching.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  h1, h2, h3, h4, .font-display {
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Custom lottery ball and scroll styles */
+.ball-glow {
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-receipt-edge {
+  background-image: radial-gradient(circle at 10px -5px, transparent 12px, white 13px);
+  background-size: 20px 20px;
+}
+
