@@ -1,21 +1,69 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --brand-navy: #091326;
+    --brand-navy-deep: #050d1a;
+    --brand-navy-light: #11203d;
+    --brand-gold: #e59c00;
+    --brand-gold-hover: #f5ab14;
+    --brand-gold-subtle: #fff8eb;
+    --surface-card: #ffffff;
+    --border-subtle: #e2e8f0;
+  }
+
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #0f172a;
+    background-color: #f8fafc;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  h1, h2, h3, h4, .font-display {
-    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  /* Accessible, restrained focus indicators */
+  :focus-visible {
+    outline: 2px solid #e59c00;
+    outline-offset: 2px;
   }
 }
 
-/* Custom lottery ball and scroll styles */
-.ball-glow {
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+/* Tactile, realistic lottery balls */
+.lottery-ball-main {
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f1f5f9 65%, #cbd5e1 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+  border: 1px solid #cbd5e1;
 }
 
+.lottery-ball-bonus {
+  background: radial-gradient(circle at 35% 30%, #fb7185 0%, #e11d48 65%, #9f1239 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.6), inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+  border: 1px solid #be123c;
+}
+
+.lottery-ball-gold {
+  background: radial-gradient(circle at 35% 30%, #fef08a 0%, #f59e0b 65%, #b45309 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.7), inset 0 -1px 2px rgba(0, 0, 0, 0.3);
+  border: 1px solid #d97706;
+}
+
+/* Subtle physical ticket receipt zigzag edge */
 .ticket-receipt-edge {
   background-image: radial-gradient(circle at 10px -5px, transparent 12px, white 13px);
   background-size: 20px 20px;
+}
+
+/* Scrollbar polish */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 

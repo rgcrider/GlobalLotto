@@ -95,12 +95,52 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserProfile | null>(() => {
     const saved = localStorage.getItem('globallotto_user');
-    return saved ? JSON.parse(saved) : INITIAL_USER;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.notifications) {
+          parsed.notifications = parsed.notifications.map((n: any) => ({
+            ...n,
+            message: typeof n.message === 'string' ? n.message.replace(/€60/g, '$65').replace(/€/g, '$') : n.message
+          }));
+        }
+        if (parsed.jackpotAlerts) {
+          parsed.jackpotAlerts = parsed.jackpotAlerts.map((a: any) => ({
+            ...a,
+            currency: a.currency === 'EUR' ? 'USD' : a.currency
+          }));
+        }
+        return parsed;
+      } catch (e) {
+        return INITIAL_USER;
+      }
+    }
+    return INITIAL_USER;
   });
 
   const [lotteries, setLotteries] = useState<Lottery[]>(() => {
     const saved = localStorage.getItem('globallotto_lotteries');
-    return saved ? JSON.parse(saved) : INITIAL_LOTTERIES;
+    if (saved) {
+      try {
+        const parsed: Lottery[] = JSON.parse(saved);
+        // Ensure any cached euro symbols or currencies are converted to Dollar
+        return parsed.map(l => {
+          if (l.jackpotCurrency === 'EUR' || (typeof l.jackpotFormatted === 'string' && l.jackpotFormatted.includes('€'))) {
+            const initial = INITIAL_LOTTERIES.find(il => il.id === l.id);
+            if (initial) return initial;
+            return {
+              ...l,
+              jackpotCurrency: 'USD',
+              jackpotFormatted: l.jackpotFormatted.replace(/€/g, '$')
+            };
+          }
+          return l;
+        });
+      } catch (e) {
+        return INITIAL_LOTTERIES;
+      }
+    }
+    return INITIAL_LOTTERIES;
   });
 
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -123,7 +163,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     return saved ? JSON.parse(saved) : INITIAL_TRANSACTIONS;
   });
 
-  const [currency, setCurrency] = useState<CurrencyCode>('USD');
+  const [currency, setCurrency] = useState<CurrencyCode>(() => {
+    const saved = localStorage.getItem('globallotto_currency');
+    if (!saved || saved === 'EUR') {
+      localStorage.setItem('globallotto_currency', 'USD');
+      return 'USD';
+    }
+    return (saved as CurrencyCode) || 'USD';
+  });
   const [demoMode, setDemoMode] = useState<boolean>(true);
   const [currentCountry, setCurrentCountry] = useState<string>('Canada');
   const [isAuthModalOpen, setIsAuthModalOpen] = useState<boolean>(false);
@@ -167,6 +214,10 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   useEffect(() => {
     localStorage.setItem('globallotto_orders', JSON.stringify(orders));
   }, [orders]);
+
+  useEffect(() => {
+    localStorage.setItem('globallotto_currency', currency);
+  }, [currency]);
 
   useEffect(() => {
     localStorage.setItem('globallotto_tx', JSON.stringify(transactions));

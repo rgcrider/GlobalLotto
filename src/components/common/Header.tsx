@@ -15,9 +15,13 @@ import {
   Award, 
   Settings, 
   FileCheck,
-  CheckCircle2
+  CheckCircle2,
+  MapPin,
+  Smartphone,
+  HeartHandshake
 } from 'lucide-react';
 import { useApp, CurrencyCode } from '../../context/AppContext';
+import { IllinoisLotteryLogo } from './IllinoisLotteryLogo';
 
 interface HeaderProps {
   currentView: string;
@@ -56,16 +60,16 @@ export const Header: React.FC<HeaderProps> = ({
   const unreadNotifs = user?.notifications.filter(n => !n.read) || [];
 
   const navLinks = [
-    { id: 'lotteries', label: 'Lotteries' },
-    { id: 'results', label: 'Results' },
-    { id: 'jackpots', label: 'Jackpots' },
-    { id: 'promotions', label: 'Promotions' },
-    { id: 'how-it-works', label: 'How It Works' },
-    { id: 'winners', label: 'Winners' },
-    { id: 'help', label: 'Help' },
+    { id: 'lotteries', label: 'Buy Online' },
+    { id: 'results', label: 'Winning Numbers' },
+    { id: 'jackpots', label: 'Games' },
+    { id: 'how-it-works', label: 'How To Play' },
+    { id: 'winners', label: 'When You Win' },
+    { id: 'promotions', label: 'Where The Money Goes' },
+    { id: 'responsible-gaming', label: 'Responsible Play' },
   ];
 
-  const countries = ['Canada', 'United Kingdom', 'Germany', 'Australia', 'Japan', 'Mexico', 'France', 'Brazil', 'Iran'];
+  const countries = ['United States (IL)', 'Canada', 'United Kingdom', 'Germany', 'Australia', 'Japan', 'Mexico', 'France'];
 
   return (
     <header className="sticky top-0 z-40 w-full bg-[#07132b] text-white border-b border-slate-800 shadow-md">
@@ -73,17 +77,41 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="bg-[#040c1d] border-b border-slate-800/80 px-4 py-1.5 text-xs text-slate-300">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-3">
-            <span className="inline-flex items-center gap-1.5 text-amber-400 font-medium">
-              <ShieldCheck className="w-3.5 h-3.5 text-amber-400" />
-              Official Lottery Concierge Service
+            <span className="inline-flex items-center gap-1 bg-amber-400/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded tracking-wide uppercase">
+              18+ Only
             </span>
-            <span className="hidden sm:inline text-slate-500">|</span>
-            <span className="hidden sm:inline text-slate-400">
-              Scanned Official Tickets • 100% Commission-Free Winnings • 18+ Only
+            <span className="text-slate-300 text-xs hidden md:inline">
+              When you play, you support Illinois education and specialty causes.
             </span>
+            <span className="hidden sm:inline text-slate-600">|</span>
+            <button 
+              onClick={() => setCurrentView('responsible-gaming')}
+              className="text-amber-400 hover:text-amber-300 font-semibold underline underline-offset-2 flex items-center gap-1"
+            >
+              <HeartHandshake className="w-3 h-3 text-amber-400" />
+              <span>1-800-GAMBLER</span>
+            </button>
           </div>
 
           <div className="flex items-center gap-3 ml-auto">
+            <button
+              onClick={() => setCurrentView('help')}
+              className="hidden sm:flex items-center gap-1 text-slate-400 hover:text-white transition-colors"
+            >
+              <MapPin className="w-3 h-3 text-slate-400" />
+              <span>Find Retailer</span>
+            </button>
+
+            <button
+              onClick={() => setCurrentView('help')}
+              className="hidden md:flex items-center gap-1 text-slate-400 hover:text-white transition-colors"
+            >
+              <Smartphone className="w-3 h-3 text-slate-400" />
+              <span>Download App</span>
+            </button>
+
+            <span className="hidden sm:inline text-slate-700">|</span>
+
             {/* Demo Mode Toggle */}
             <div className="flex items-center gap-1.5 bg-amber-500/10 border border-amber-500/30 px-2 py-0.5 rounded-full">
               <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
@@ -92,7 +120,7 @@ export const Header: React.FC<HeaderProps> = ({
                 className="text-[11px] font-semibold text-amber-300 hover:text-amber-200"
                 title="Simulated testing sandbox with realistic lottery courier operations"
               >
-                Demo Mode {demoMode ? 'ON' : 'OFF'}
+                Simulation {demoMode ? 'ON' : 'OFF'}
               </button>
             </div>
 
@@ -136,24 +164,32 @@ export const Header: React.FC<HeaderProps> = ({
               <button 
                 onClick={() => setCurrencyMenuOpen(!currencyMenuOpen)}
                 className="flex items-center gap-1 hover:text-white font-medium transition-colors"
+                title="Select Currency"
               >
-                <span>{currency}</span>
+                <span className="font-semibold">{currency === 'USD' ? 'USD ($)' : currency}</span>
                 <ChevronDown className="w-3 h-3 text-slate-400" />
               </button>
               {currencyMenuOpen && (
-                <div className="absolute right-0 mt-1 w-28 bg-slate-900 border border-slate-700 rounded-lg shadow-xl py-1 z-50 text-xs">
-                  {(['USD', 'EUR', 'GBP', 'AUD', 'CAD'] as CurrencyCode[]).map(curr => (
+                <div className="absolute right-0 mt-1 w-32 bg-slate-900 border border-slate-700 rounded-lg shadow-xl py-1 z-50 text-xs">
+                  {[
+                    { code: 'USD' as CurrencyCode, label: 'USD ($)' },
+                    { code: 'EUR' as CurrencyCode, label: 'EUR (€)' },
+                    { code: 'GBP' as CurrencyCode, label: 'GBP (£)' },
+                    { code: 'AUD' as CurrencyCode, label: 'AUD (A$)' },
+                    { code: 'CAD' as CurrencyCode, label: 'CAD (C$)' }
+                  ].map(({ code, label }) => (
                     <button
-                      key={curr}
+                      key={code}
                       onClick={() => {
-                        setCurrency(curr);
+                        setCurrency(code);
                         setCurrencyMenuOpen(false);
                       }}
-                      className={`w-full text-left px-3 py-1.5 hover:bg-slate-800 ${
-                        curr === currency ? 'text-amber-400 font-semibold' : 'text-slate-200'
+                      className={`w-full text-left px-3 py-1.5 hover:bg-slate-800 flex items-center justify-between ${
+                        code === currency ? 'text-amber-400 font-semibold' : 'text-slate-200'
                       }`}
                     >
-                      {curr}
+                      <span>{label}</span>
+                      {code === currency && <span className="text-amber-400 text-[10px]">✓</span>}
                     </button>
                   ))}
                 </div>
@@ -164,37 +200,28 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 py-2.5 flex items-center justify-between gap-4">
         {/* Brand Logo */}
         <button 
           onClick={() => setCurrentView('home')}
-          className="flex items-center gap-2.5 text-left group focus:outline-none"
+          className="flex items-center text-left group focus:outline-none transition-transform hover:opacity-95"
+          title="Illinois Lottery Home"
         >
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
-            <Globe className="w-6 h-6 text-slate-950 stroke-[2.2]" />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center font-display">
-              Global<span className="text-amber-400">Lotto</span>
-            </span>
-            <span className="text-[10px] text-slate-400 font-medium tracking-wide uppercase -mt-1 hidden sm:block">
-              Bigger Dreams. A Brighter Tomorrow.
-            </span>
-          </div>
+          <IllinoisLotteryLogo variant="header" size="md" />
         </button>
 
         {/* Desktop Nav Links */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+        <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map(link => {
             const isActive = currentView === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => setCurrentView(link.id)}
-                className={`px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+                className={`px-3 py-1.5 rounded-md text-xs font-semibold tracking-wide transition-colors ${
                   isActive 
-                    ? 'text-amber-400 bg-white/5' 
-                    : 'text-slate-200 hover:text-white hover:bg-white/5'
+                    ? 'text-amber-400 bg-slate-800/80' 
+                    : 'text-slate-300 hover:text-white hover:bg-slate-800/40'
                 }`}
               >
                 {link.label}
@@ -401,15 +428,15 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="flex items-center gap-2">
               <button 
                 onClick={() => openAuthModal('signin')}
-                className="px-3 py-1.5 text-xs sm:text-sm font-semibold text-slate-200 hover:text-white transition-colors"
+                className="h-9 px-3.5 text-xs font-semibold text-slate-200 hover:text-white rounded-md transition-colors"
               >
                 Sign In
               </button>
               <button 
                 onClick={() => openAuthModal('signup')}
-                className="px-4 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs sm:text-sm font-bold rounded-lg shadow-sm hover:shadow-md transition-all"
+                className="h-9 px-4 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-950 text-xs font-bold rounded-md shadow-xs transition-colors"
               >
-                Sign Up
+                Create Account
               </button>
             </div>
           )}

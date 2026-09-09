@@ -72,7 +72,7 @@ export const INITIAL_USER: UserProfile = {
     {
       id: 'notif-1',
       title: 'Winning Ticket Match!',
-      message: 'Congratulations! Your EuroMillions ticket for draw Apr 19 matched 3 numbers. Prize of €60 credited to your wallet.',
+      message: 'Congratulations! Your EuroMillions ticket for draw Apr 19 matched 3 numbers. Prize of $65 credited to your wallet.',
       date: '2 hours ago',
       read: false,
       type: 'win',
@@ -125,8 +125,8 @@ export const INITIAL_USER: UserProfile = {
     {
       id: 'alert-3',
       lotteryId: 'euromillions',
-      thresholdAmount: 150,
-      currency: 'EUR',
+      thresholdAmount: 160,
+      currency: 'USD',
       createdAt: '2025-04-18',
       notifyInApp: true,
       notifyEmail: false,

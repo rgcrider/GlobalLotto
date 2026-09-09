@@ -1,12 +1,16 @@
 export type LotteryCategory = 
   | 'All' 
+  | 'Illinois'
+  | 'Draw Games'
   | 'US' 
   | 'Europe' 
   | 'Asia' 
   | 'Australia' 
   | 'Daily' 
   | 'Weekly'
-  | 'Mega Jackpots';
+  | 'Mega Jackpots'
+  | 'Fast Play'
+  | 'Scratch-Offs';
 
 export type PaymentMethod = 'credit_card' | 'wallet' | 'bank_transfer' | 'crypto';
 

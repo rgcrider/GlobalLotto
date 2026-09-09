@@ -165,11 +165,11 @@ export const JackpotAlertsTab: React.FC<JackpotAlertsTabProps> = ({ onSelectLott
               <p className="text-[11px] text-blue-600 font-bold mt-1">Alert at $1.0 Billion</p>
             </button>
             <button
-              onClick={() => setJackpotAlert('euromillions', 150)}
+              onClick={() => setJackpotAlert('euromillions', 200)}
               className="p-3 bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-200 rounded-xl text-left transition-colors"
             >
               <p className="text-xs font-bold text-slate-900">🇪🇺 EuroMillions</p>
-              <p className="text-[11px] text-blue-600 font-bold mt-1">Alert at €150M</p>
+              <p className="text-[11px] text-blue-600 font-bold mt-1">Alert at $200M</p>
             </button>
           </div>
 
@@ -389,7 +389,7 @@ export const JackpotAlertsTab: React.FC<JackpotAlertsTabProps> = ({ onSelectLott
               onClick={() => handleSimulateRollover('euromillions', 50)}
               className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-xs rounded-xl border border-white/20 transition-all"
             >
-              EuroMillions + €50M
+              EuroMillions + $50M
             </button>
           </div>
         </div>

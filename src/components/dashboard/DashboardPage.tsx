@@ -108,83 +108,83 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Top Welcome Banner */}
-      <div className="bg-gradient-to-r from-[#06132a] via-[#091e45] to-[#0c2b64] text-white rounded-3xl p-6 sm:p-8 shadow-xl mb-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div className="bg-[#071329] text-white rounded-xl p-6 border border-slate-800 shadow-sm mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="bg-amber-400/20 text-amber-300 text-xs font-bold px-2.5 py-0.5 rounded-full">
-              VIP Player Profile
+          <div className="flex items-center gap-2 mb-1.5">
+            <span className="bg-amber-500/10 border border-amber-500/20 text-amber-400 text-[11px] font-bold px-2 py-0.5 rounded">
+              Verified Player Profile
             </span>
-            <span className="flex items-center gap-1 text-xs text-emerald-400 font-semibold">
+            <span className="flex items-center gap-1 text-[11px] text-emerald-400 font-medium">
               <CheckCircle2 className="w-3.5 h-3.5" />
               KYC {user?.kycStatus.toUpperCase()}
             </span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-white font-display">
-            Welcome back, {user?.name || 'Player'}
+          <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            Account Portal · {user?.name || 'Player'}
           </h1>
           <p className="text-xs sm:text-sm text-slate-300 mt-1">
-            Manage your verified physical ticket scans, monitor upcoming draws, and access wallet payouts.
+            Manage your official physical ticket scans, monitor upcoming draws, and access wallet settlements.
           </p>
         </div>
 
         {/* Quick Balance Card */}
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-5 flex items-center gap-6 self-stretch sm:self-auto">
+        <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 flex items-center gap-5 self-stretch sm:self-auto">
           <div>
-            <p className="text-xs text-slate-300 font-medium">Wallet Balance</p>
-            <p className="text-2xl sm:text-3xl font-black text-amber-400 font-display">
+            <p className="text-[11px] text-slate-400 font-semibold uppercase tracking-wider">Available Balance</p>
+            <p className="text-2xl sm:text-3xl font-extrabold text-amber-400 tracking-tight">
               {formatMoney(user?.wallet.available || 0)}
             </p>
           </div>
           <button
             onClick={() => setActiveTab('wallet')}
-            className="px-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold rounded-xl text-xs transition-all shadow-md shrink-0"
+            className="px-3.5 py-2 bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-950 font-bold rounded text-xs transition-colors shrink-0 shadow-xs"
           >
-            Deposit / Wallet
+            Deposit / Payout
           </button>
         </div>
       </div>
 
       {/* Stats Ribbon */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs">
-          <div className="flex items-center gap-2 text-blue-600 mb-1">
-            <Ticket className="w-4 h-4" />
-            <span className="text-xs font-bold uppercase text-slate-500">Active Tickets</span>
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3.5 mb-6">
+        <div className="bg-white rounded-lg p-4 border border-slate-200/90 shadow-xs">
+          <div className="flex items-center gap-2 text-slate-500 mb-1">
+            <Ticket className="w-3.5 h-3.5 text-slate-700" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Active Orders</span>
           </div>
-          <p className="text-2xl font-black text-slate-900 font-display">{activeCount}</p>
+          <p className="text-2xl font-bold text-slate-900">{activeCount}</p>
         </div>
 
-        <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs">
-          <div className="flex items-center gap-2 text-emerald-600 mb-1">
-            <Trophy className="w-4 h-4" />
-            <span className="text-xs font-bold uppercase text-slate-500">Total Winnings</span>
+        <div className="bg-white rounded-lg p-4 border border-slate-200/90 shadow-xs">
+          <div className="flex items-center gap-2 text-slate-500 mb-1">
+            <Trophy className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Total Winnings</span>
           </div>
-          <p className="text-2xl font-black text-emerald-600 font-display">{formatMoney(totalWon)}</p>
+          <p className="text-2xl font-bold text-emerald-600">{formatMoney(totalWon)}</p>
         </div>
 
-        <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs">
-          <div className="flex items-center gap-2 text-amber-500 mb-1">
-            <ShieldCheck className="w-4 h-4" />
-            <span className="text-xs font-bold uppercase text-slate-500">Commission Free</span>
+        <div className="bg-white rounded-lg p-4 border border-slate-200/90 shadow-xs">
+          <div className="flex items-center gap-2 text-slate-500 mb-1">
+            <ShieldCheck className="w-3.5 h-3.5 text-amber-500" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Commission Free</span>
           </div>
-          <p className="text-2xl font-black text-slate-900 font-display">100%</p>
+          <p className="text-2xl font-bold text-slate-900">100%</p>
         </div>
 
-        <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-xs">
-          <div className="flex items-center gap-2 text-purple-600 mb-1">
-            <Layers className="w-4 h-4" />
-            <span className="text-xs font-bold uppercase text-slate-500">Subscriptions</span>
+        <div className="bg-white rounded-lg p-4 border border-slate-200/90 shadow-xs">
+          <div className="flex items-center gap-2 text-slate-500 mb-1">
+            <Layers className="w-3.5 h-3.5 text-slate-700" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">Subscriptions</span>
           </div>
-          <p className="text-2xl font-black text-slate-900 font-display">1 Active</p>
+          <p className="text-2xl font-bold text-slate-900">1 Active</p>
         </div>
       </div>
 
       {/* Main Navigation Tabs */}
-      <div className="flex items-center gap-2 border-b border-slate-200 pb-3 mb-8 overflow-x-auto text-xs sm:text-sm font-bold">
+      <div className="flex items-center gap-1.5 border-b border-slate-200 pb-3 mb-6 overflow-x-auto text-xs font-semibold">
         <button
           onClick={() => setActiveTab('tickets')}
-          className={`px-4 py-2 rounded-xl transition-all ${
-            activeTab === 'tickets' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+          className={`px-3.5 py-2 rounded-md transition-colors ${
+            activeTab === 'tickets' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
           My Tickets & Scans ({tickets.length})
@@ -192,8 +192,8 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
         <button
           onClick={() => setActiveTab('wallet')}
-          className={`px-4 py-2 rounded-xl transition-all ${
-            activeTab === 'wallet' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+          className={`px-3.5 py-2 rounded-md transition-colors ${
+            activeTab === 'wallet' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
           Wallet & Transactions
@@ -201,7 +201,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
         <button
           onClick={() => setActiveTab('simulator')}
-          className={`px-4 py-2 rounded-xl transition-all flex items-center gap-1.5 ${
+          className={`px-3.5 py-2 rounded-md transition-colors flex items-center gap-1.5 ${
             activeTab === 'simulator' ? 'bg-amber-500 text-slate-950 shadow-xs' : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
@@ -211,17 +211,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
         <button
           onClick={() => setActiveTab('kyc')}
-          className={`px-4 py-2 rounded-xl transition-all ${
-            activeTab === 'kyc' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+          className={`px-3.5 py-2 rounded-md transition-colors ${
+            activeTab === 'kyc' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
-          KYC & Identity
+          KYC & Verification
         </button>
 
         <button
           onClick={() => setActiveTab('responsible')}
-          className={`px-4 py-2 rounded-xl transition-all ${
-            activeTab === 'responsible' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+          className={`px-3.5 py-2 rounded-md transition-colors ${
+            activeTab === 'responsible' ? 'bg-slate-900 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
           }`}
         >
           Responsible Gaming
@@ -230,16 +230,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
       {/* TAB 1: MY TICKETS & SCANS */}
       {activeTab === 'tickets' && (
-        <div className="space-y-6">
+        <div className="space-y-4">
           {/* Subfilter */}
-          <div className="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-xs">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-bold text-slate-500">Filter:</span>
+          <div className="flex flex-wrap items-center justify-between gap-4 bg-white p-3.5 rounded-lg border border-slate-200/90 shadow-xs">
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs font-semibold text-slate-500 mr-1">Filter:</span>
               {(['all', 'active', 'winning', 'past'] as const).map(f => (
                 <button
                   key={f}
                   onClick={() => setTicketFilter(f)}
-                  className={`px-3 py-1 rounded-lg text-xs font-bold capitalize transition-all ${
+                  className={`px-2.5 py-1 rounded text-xs font-semibold capitalize transition-colors ${
                     ticketFilter === f ? 'bg-slate-900 text-white' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
@@ -249,20 +249,20 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             </div>
 
             <p className="text-xs text-slate-500">
-              Showing {filteredTickets.length} ticket order(s)
+              {filteredTickets.length} order(s) listed
             </p>
           </div>
 
           {filteredTickets.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center space-y-3">
-              <Ticket className="w-12 h-12 text-slate-400 mx-auto" />
-              <h3 className="text-base font-bold text-slate-800">No tickets found</h3>
+            <div className="bg-white rounded-lg border border-slate-200 p-10 text-center space-y-2">
+              <Ticket className="w-10 h-10 text-slate-400 mx-auto" />
+              <h3 className="text-sm font-bold text-slate-800">No tickets found</h3>
               <p className="text-xs text-slate-500">
-                You do not have any tickets matching this filter category.
+                You do not have any orders matching this filter.
               </p>
             </div>
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3.5">
               {filteredTickets.map(ticket => {
                 const lottery = lotteries.find(l => l.id === ticket.lotteryId);
                 const isWinner = ticket.status === 'won';
@@ -271,38 +271,38 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 return (
                   <div
                     key={ticket.id}
-                    className={`bg-white rounded-2xl border p-6 shadow-xs transition-all ${
-                      isWinner ? 'border-amber-400 bg-amber-50/20' : 'border-slate-200'
+                    className={`bg-white rounded-lg border p-5 shadow-xs transition-colors ${
+                      isWinner ? 'border-amber-400 bg-amber-50/20' : 'border-slate-200/90'
                     }`}
                   >
-                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+                    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-3 border-b border-slate-100">
                       <div className="flex items-center gap-3">
-                        <div className={`w-12 h-12 rounded-xl ${lottery?.logoBg || 'bg-blue-600'} flex items-center justify-center font-black ${lottery?.logoColor || 'text-white'} text-xs font-display`}>
+                        <div className={`w-10 h-10 rounded-md ${lottery?.logoBg || 'bg-slate-900'} flex items-center justify-center font-bold ${lottery?.logoColor || 'text-white'} text-xs`}>
                           {lottery?.name.substring(0, 3)}
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="text-base font-bold text-slate-900">{lottery?.name || 'Lottery'}</h3>
+                            <h3 className="text-sm font-bold text-slate-900">{lottery?.name || 'Lottery'}</h3>
                             <span className="text-xs">{lottery?.flag}</span>
                           </div>
                           <p className="text-xs text-slate-500">
-                            Draw Date: <strong>{ticket.drawDate}</strong> • Order ID: #{ticket.orderId}
+                            Draw Date: <strong>{ticket.drawDate}</strong> · Order #{ticket.orderId}
                           </p>
                         </div>
                       </div>
 
                       {/* Status Badges & Prize */}
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-2.5">
                         {isWinner && prizeAmount > 0 && (
                           <div className="text-right">
-                            <span className="text-[10px] uppercase font-bold text-amber-600 block">Winning Prize</span>
-                            <span className="text-lg font-black text-amber-500 font-display">
+                            <span className="text-[10px] uppercase font-bold text-amber-600 block">Prize</span>
+                            <span className="text-base font-extrabold text-amber-500">
                               {formatMoney(prizeAmount)}
                             </span>
                           </div>
                         )}
 
-                        <span className={`text-xs font-bold px-3 py-1 rounded-full ${
+                        <span className={`text-xs font-semibold px-2.5 py-1 rounded ${
                           ticket.status === 'won'
                             ? 'bg-amber-100 text-amber-800 border border-amber-300'
                             : ticket.status === 'active'
@@ -311,52 +311,52 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                             ? 'bg-slate-100 text-slate-700'
                             : 'bg-blue-100 text-blue-800'
                         }`}>
-                          {ticket.status === 'won' ? 'WINNER!' : ticket.status === 'active' ? 'Ticket Scanned & Stored' : ticket.status.toUpperCase()}
+                          {ticket.status === 'won' ? 'WINNER' : ticket.status === 'active' ? 'Ticket Scanned & Stored' : ticket.status.toUpperCase()}
                         </span>
 
                         {/* Scanned Proof CTA */}
                         {ticket.scannedImageUrl && (
                           <button
                             onClick={() => setSelectedTicketForProof(ticket)}
-                            className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-xs"
+                            className="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded text-xs font-semibold flex items-center gap-1.5 transition-colors shadow-xs"
                           >
                             <Eye className="w-3.5 h-3.5" />
-                            <span>View Scan Proof</span>
+                            <span>Scan Proof</span>
                           </button>
                         )}
                       </div>
                     </div>
 
                     {/* Ticket Lines Details */}
-                    <div className="pt-4 space-y-2">
-                      <p className="text-xs font-bold text-slate-700">
-                        Purchased Lines ({ticket.lines.length}):
+                    <div className="pt-3 space-y-2">
+                      <p className="text-xs font-semibold text-slate-700">
+                        Playslip Lines ({ticket.lines.length}):
                       </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                         {ticket.lines.map((line, lIdx) => (
                           <div
                             key={line.id || lIdx}
-                            className="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs"
+                            className="p-2.5 rounded-md bg-slate-50 border border-slate-200/80 flex items-center justify-between text-xs"
                           >
-                            <span className="font-bold text-slate-500 w-8">Line {lIdx + 1}:</span>
-                            <div className="flex items-center gap-1.5 font-mono">
+                            <span className="font-semibold text-slate-500 w-12 text-[11px]">Line {lIdx + 1}:</span>
+                            <div className="flex items-center gap-1">
                               {line.mainNumbers.map(num => (
                                 <span
                                   key={num}
-                                  className="w-7 h-7 rounded-full bg-white border border-slate-300 text-slate-900 font-bold flex items-center justify-center shadow-2xs"
+                                  className="w-7 h-7 rounded-full bg-white border border-slate-300 text-slate-900 font-bold flex items-center justify-center text-xs shadow-2xs"
                                 >
-                                  {String(num).padStart(2, '0')}
+                                  {num}
                                 </span>
                               ))}
                             </div>
-                            <div className="flex items-center gap-1 font-mono">
+                            <div className="flex items-center gap-1">
                               {line.bonusNumbers.map(b => (
                                 <span
                                   key={b}
-                                  className="w-7 h-7 rounded-full bg-rose-600 text-white font-bold flex items-center justify-center shadow-2xs"
+                                  className="lottery-ball-bonus w-7 h-7 rounded-full font-bold flex items-center justify-center text-xs text-white"
                                   title="Bonus / Powerball"
                                 >
-                                  {String(b).padStart(2, '0')}
+                                  {b}
                                 </span>
                               ))}
                             </div>
@@ -374,30 +374,30 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
       {/* TAB 2: WALLET & TRANSACTIONS */}
       {activeTab === 'wallet' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left: Balances & Actions (6 cols) */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="lg:col-span-6 space-y-5">
             {/* Balance Card */}
-            <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
-              <h3 className="text-base font-bold text-slate-900 font-display">
-                Account Wallet Balance
+            <div className="bg-white rounded-lg border border-slate-200/90 p-5 shadow-xs space-y-4">
+              <h3 className="text-sm font-bold text-slate-900">
+                Account Settlement Balance
               </h3>
-              <div className="p-6 bg-[#07142d] text-white rounded-2xl flex items-center justify-between">
+              <div className="p-5 bg-[#07142d] text-white rounded-lg flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-slate-400">Available Funds</p>
-                  <p className="text-3xl font-black text-amber-400 font-display">
+                  <p className="text-[11px] text-slate-400 uppercase tracking-wider font-semibold">Available Funds</p>
+                  <p className="text-2xl sm:text-3xl font-extrabold text-amber-400 tracking-tight">
                     {formatMoney(user?.wallet.available || 0)}
                   </p>
                 </div>
                 <div className="text-right text-xs text-slate-400">
-                  <p>100% Commission-Free</p>
-                  <p className="text-emerald-400 font-semibold">Instant Concierge Settlement</p>
+                  <p className="font-semibold text-slate-300">Commission-Free Guarantee</p>
+                  <p className="text-emerald-400 text-[11px]">Instant Concierge Settlement</p>
                 </div>
               </div>
 
               {/* Deposit Quick Amounts */}
-              <div className="space-y-3 pt-2">
-                <label className="text-xs font-bold text-slate-700 block">
+              <div className="space-y-2 pt-1">
+                <label className="text-xs font-semibold text-slate-700 block">
                   Quick Deposit Funds
                 </label>
                 <div className="grid grid-cols-4 gap-2">
@@ -405,22 +405,22 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                     <button
                       key={amt}
                       onClick={() => handleQuickDeposit(amt)}
-                      className="py-2.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-xl text-xs font-bold text-slate-800 transition-colors"
+                      className="py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded text-xs font-semibold text-slate-800 transition-colors"
                     >
                       +{formatMoney(amt)}
                     </button>
                   ))}
                 </div>
                 {depositSuccess && (
-                  <p className="text-xs text-emerald-600 font-bold flex items-center gap-1">
-                    <CheckCircle2 className="w-4 h-4" /> Funds successfully added to wallet!
+                  <p className="text-xs text-emerald-600 font-semibold flex items-center gap-1 mt-1">
+                    <CheckCircle2 className="w-3.5 h-3.5" /> Funds credited to balance successfully.
                   </p>
                 )}
               </div>
 
               {/* Withdraw Section */}
-              <div className="pt-4 border-t border-slate-100 space-y-3">
-                <label className="text-xs font-bold text-slate-700 block">
+              <div className="pt-3 border-t border-slate-100 space-y-2.5">
+                <label className="text-xs font-semibold text-slate-700 block">
                   Request Payout / Withdrawal
                 </label>
                 <form onSubmit={handleWithdrawSubmit} className="flex gap-2">
@@ -430,18 +430,18 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                     max={user?.wallet.available || 0}
                     value={withdrawAmount}
                     onChange={e => setWithdrawAmount(Number(e.target.value))}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-50 border border-slate-200 rounded px-3 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-slate-400"
                     placeholder="Amount to withdraw"
                   />
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-colors shrink-0"
+                    className="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs rounded transition-colors shrink-0 shadow-xs"
                   >
                     Withdraw
                   </button>
                 </form>
                 {withdrawMessage && (
-                  <p className="text-xs text-slate-600 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                  <p className="text-xs text-slate-600 bg-slate-50 p-2.5 rounded border border-slate-200">
                     {withdrawMessage}
                   </p>
                 )}
@@ -450,34 +450,34 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </div>
 
           {/* Right: Transaction History Log (6 cols) */}
-          <div className="lg:col-span-6 bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-4">
-            <h3 className="text-base font-bold text-slate-900 font-display">
+          <div className="lg:col-span-6 bg-white rounded-lg border border-slate-200/90 p-5 shadow-xs space-y-3.5">
+            <h3 className="text-sm font-bold text-slate-900">
               Transaction History
             </h3>
             <div className="divide-y divide-slate-100 max-h-96 overflow-y-auto">
               {transactions.map(tx => (
-                <div key={tx.id} className="py-3 flex items-center justify-between text-xs">
+                <div key={tx.id} className="py-2.5 flex items-center justify-between text-xs">
                   <div className="flex items-center gap-2.5">
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center ${
+                    <div className={`w-7 h-7 rounded flex items-center justify-center ${
                       tx.type === 'deposit' || tx.type === 'win_payout'
                         ? 'bg-emerald-50 text-emerald-600'
                         : 'bg-slate-100 text-slate-600'
                     }`}>
                       {tx.type === 'deposit' || tx.type === 'win_payout' ? (
-                        <ArrowDownLeft className="w-4 h-4" />
+                        <ArrowDownLeft className="w-3.5 h-3.5" />
                       ) : (
-                        <ArrowUpRight className="w-4 h-4" />
+                        <ArrowUpRight className="w-3.5 h-3.5" />
                       )}
                     </div>
                     <div>
-                      <p className="font-bold text-slate-800">{tx.description}</p>
+                      <p className="font-semibold text-slate-800">{tx.description}</p>
                       <p className="text-[11px] text-slate-400">{tx.date}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className={`font-black ${
+                    <p className={`font-bold ${
                       tx.type === 'deposit' || tx.type === 'win_payout'
-                        ? 'text-emerald-600 font-display'
+                        ? 'text-emerald-600'
                         : 'text-slate-900'
                     }`}>
                       {tx.type === 'deposit' || tx.type === 'win_payout' ? '+' : ''}
@@ -494,27 +494,27 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
       {/* TAB 3: DRAW SIMULATOR (DEMO TESTING ENGINE) */}
       {activeTab === 'simulator' && (
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
-          <div className="max-w-xl">
-            <span className="text-xs font-bold text-amber-600 uppercase tracking-wider">
-              Interactive Test Suite
+        <div className="bg-white rounded-lg border border-slate-200/90 p-6 shadow-xs space-y-5 max-w-3xl">
+          <div>
+            <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider">
+              Concierge Operations Engine
             </span>
-            <h2 className="text-2xl font-black text-slate-900 font-display mt-1">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight mt-1">
               Simulate Official Lottery Draw
             </h2>
             <p className="text-xs text-slate-500 mt-1">
-              Trigger a live draw simulation on demand! This automatically generates winning numbers, scans all your active tickets, highlights ball matches, and immediately credits prizes to your wallet.
+              Trigger a live draw simulation on demand. This automatically generates winning numbers, scans all your active ticket orders, verifies ball matches, and immediately credits prizes to your wallet.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
             {lotteries.slice(0, 3).map(lot => (
-              <div key={lot.id} className="p-4 rounded-xl border border-slate-200 bg-slate-50 space-y-3">
+              <div key={lot.id} className="p-3.5 rounded-lg border border-slate-200 bg-slate-50/70 space-y-2.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl">{lot.flag}</span>
+                  <span className="text-lg">{lot.flag}</span>
                   <div>
-                    <p className="text-sm font-bold text-slate-900">{lot.name}</p>
-                    <p className="text-xs text-amber-600 font-bold">{lot.jackpotFormatted}</p>
+                    <p className="text-xs font-bold text-slate-900">{lot.name}</p>
+                    <p className="text-xs text-slate-600 font-semibold">{lot.jackpotFormatted}</p>
                   </div>
                 </div>
 
@@ -524,9 +524,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                     alert(`Simulated draw executed for ${lot.name}! Winning numbers: ${res.winningMain.join(', ')} + Bonus: ${res.winningBonus.join(', ')}. Check 'My Tickets' to see highlighted matches!`);
                     setActiveTab('tickets');
                   }}
-                  className="w-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold py-2 rounded-lg text-xs transition-colors shadow-xs"
+                  className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-1.5 rounded text-xs transition-colors shadow-xs"
                 >
-                  Simulate Draw Now
+                  Simulate Draw
                 </button>
               </div>
             ))}
@@ -536,28 +536,28 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
       {/* TAB 4: KYC & IDENTITY */}
       {activeTab === 'kyc' && (
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs max-w-2xl space-y-6">
+        <div className="bg-white rounded-lg border border-slate-200/90 p-6 shadow-xs max-w-xl space-y-5">
           <div>
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
               Regulatory Compliance
             </span>
-            <h2 className="text-2xl font-black text-slate-900 font-display mt-1">
-              KYC & Player Verification
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight mt-0.5">
+              KYC & Identity Verification
             </h2>
             <p className="text-xs text-slate-500 mt-1">
-              In accordance with international Anti-Money Laundering (AML) and jurisdictional gaming laws, withdrawals require verified proof of legal identity.
+              In accordance with international Anti-Money Laundering (AML) standards, prize payouts require verified identity documentation.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <UserCheck className="w-6 h-6 text-emerald-600" />
+          <div className="p-3.5 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-between">
+            <div className="flex items-center gap-2.5">
+              <UserCheck className="w-5 h-5 text-emerald-600 shrink-0" />
               <div>
                 <p className="text-xs font-bold text-emerald-900">Current KYC Tier: Verified Level 1</p>
-                <p className="text-[11px] text-emerald-700">Eligible for payouts up to $50,000 without additional notarization.</p>
+                <p className="text-[11px] text-emerald-700">Eligible for payouts up to $50,000 without notarization.</p>
               </div>
             </div>
-            <span className="bg-emerald-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-full">
+            <span className="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded">
               ACTIVE
             </span>
           </div>
@@ -567,16 +567,16 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               e.preventDefault();
               setKycSubmitted(true);
             }}
-            className="space-y-4 pt-2"
+            className="space-y-3.5 pt-1"
           >
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">
-                Identification Document Type
+              <label className="text-xs font-semibold text-slate-700 block mb-1">
+                Document Type
               </label>
               <select
                 value={kycDocType}
                 onChange={e => setKycDocType(e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none"
+                className="w-full bg-slate-50 border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-slate-400"
               >
                 <option value="Passport">International Passport</option>
                 <option value="Driver">Driver's License</option>
@@ -585,26 +585,26 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">
+              <label className="text-xs font-semibold text-slate-700 block mb-1">
                 Upload Scanned Copy / Photo
               </label>
-              <div className="border-2 border-dashed border-slate-200 hover:border-blue-400 p-6 rounded-xl text-center cursor-pointer bg-slate-50 transition-colors">
-                <FileText className="w-8 h-8 text-slate-400 mx-auto mb-2" />
-                <p className="text-xs text-slate-600 font-medium">Click or drag document to upload</p>
+              <div className="border border-dashed border-slate-300 hover:border-slate-400 p-5 rounded-lg text-center cursor-pointer bg-slate-50 transition-colors">
+                <FileText className="w-6 h-6 text-slate-400 mx-auto mb-1" />
+                <p className="text-xs text-slate-700 font-medium">Click to select document or drag & drop</p>
                 <p className="text-[10px] text-slate-400 mt-0.5">JPG, PNG, or PDF up to 10MB</p>
               </div>
             </div>
 
             <button
               type="submit"
-              className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2.5 rounded-xl text-xs transition-colors"
+              className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2 rounded text-xs transition-colors"
             >
               Submit Verification Document
             </button>
 
             {kycSubmitted && (
-              <p className="text-xs text-emerald-600 font-bold flex items-center gap-1">
-                <CheckCircle2 className="w-4 h-4" /> Document uploaded and securely stored in compliance vault.
+              <p className="text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" /> Document securely uploaded and stored in compliance vault.
               </p>
             )}
           </form>
@@ -613,70 +613,70 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
       {/* TAB 5: RESPONSIBLE GAMING */}
       {activeTab === 'responsible' && (
-        <div className="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-xs max-w-2xl space-y-6">
+        <div className="bg-white rounded-lg border border-slate-200/90 p-6 shadow-xs max-w-xl space-y-5">
           <div>
-            <span className="text-xs font-bold text-amber-600 uppercase tracking-wider">
+            <span className="text-xs font-semibold text-amber-600 uppercase tracking-wider">
               Player Protection
             </span>
-            <h2 className="text-2xl font-black text-slate-900 font-display mt-1">
+            <h2 className="text-xl font-bold text-slate-900 tracking-tight mt-0.5">
               Responsible Gaming Limits
             </h2>
             <p className="text-xs text-slate-500 mt-1">
-              Set automated deposit, spend, and session controls to keep your lottery participation safe and fun.
+              Configure deposit, spend, and session limits to maintain healthy and controlled participation.
             </p>
           </div>
 
-          <form onSubmit={handleSaveLimits} className="space-y-4">
+          <form onSubmit={handleSaveLimits} className="space-y-3.5">
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">
-                Daily Deposit Ceiling ($)
+              <label className="text-xs font-semibold text-slate-700 block mb-1">
+                Daily Deposit Limit ($)
               </label>
               <input
                 type="number"
                 value={dailyLimit}
                 onChange={e => setDailyLimit(Number(e.target.value))}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900"
+                className="w-full bg-slate-50 border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-slate-400"
               />
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">
-                Weekly Spend Ceiling ($)
+              <label className="text-xs font-semibold text-slate-700 block mb-1">
+                Weekly Spend Limit ($)
               </label>
               <input
                 type="number"
                 value={weeklyLimit}
                 onChange={e => setWeeklyLimit(Number(e.target.value))}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900"
+                className="w-full bg-slate-50 border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-slate-400"
               />
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1">
-                Reality Check Timer (Minutes)
+              <label className="text-xs font-semibold text-slate-700 block mb-1">
+                Reality Check Interval (Minutes)
               </label>
               <input
                 type="number"
                 value={realityCheckMinutes}
                 onChange={e => setRealityCheckMinutes(Number(e.target.value))}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900"
+                className="w-full bg-slate-50 border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-slate-400"
               />
             </div>
 
-            <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
-              <p className="font-bold mb-1">Self-Exclusion Options</p>
-              <p className="text-slate-600 mb-2">
-                Temporarily or permanently disable lottery purchases on this account.
+            <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 text-xs text-slate-800 space-y-1.5">
+              <p className="font-bold text-slate-900">Self-Exclusion Options</p>
+              <p className="text-slate-600 text-[11px]">
+                Temporarily suspend concierge purchasing on this account:
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5 pt-1">
                 {['24 Hours', '7 Days', '30 Days', '6 Months'].map(p => (
                   <button
                     key={p}
                     type="button"
-                    onClick={() => alert(`Demo Mode: Self-exclusion applied for ${p}. Purchases temporarily locked.`)}
-                    className="px-3 py-1 bg-white border border-amber-300 rounded-lg text-xs font-bold hover:bg-amber-100 transition-colors"
+                    onClick={() => alert(`Demo Mode: Self-exclusion applied for ${p}. Ticket orders temporarily locked.`)}
+                    className="px-2.5 py-1 bg-white border border-slate-300 rounded text-xs font-semibold hover:bg-slate-100 transition-colors"
                   >
-                    Lock {p}
+                    {p}
                   </button>
                 ))}
               </div>
@@ -684,14 +684,14 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 rounded-xl text-xs transition-colors shadow-xs"
+              className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2 rounded text-xs transition-colors shadow-xs"
             >
-              Save Limits & Protection Settings
+              Save Protection Parameters
             </button>
 
             {limitsSaved && (
-              <p className="text-xs text-emerald-600 font-bold flex items-center gap-1">
-                <CheckCircle2 className="w-4 h-4" /> Responsible gaming parameters updated and enforced.
+              <p className="text-xs text-emerald-600 font-semibold flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5" /> Responsible gaming parameters updated and enforced.
               </p>
             )}
           </form>

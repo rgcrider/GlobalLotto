@@ -74,45 +74,45 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
       {/* Back Button */}
       <button
         onClick={onBackToCart}
-        className="flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:underline mb-6"
+        className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 mb-5 transition-colors"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
         <span>Return to Shopping Cart</span>
       </button>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left Column: Form & Payment Selection (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
-          <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-xs space-y-6">
+        <div className="lg:col-span-7 space-y-5">
+          <div className="bg-white rounded-lg border border-slate-200/90 p-5 shadow-xs space-y-5">
             <div>
-              <span className="text-xs font-bold text-blue-600 uppercase tracking-wider">
-                Step 1 of 2
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                Step 2 of 2 · Payment & Fulfillment
               </span>
-              <h1 className="text-2xl font-black text-slate-900 font-display">
+              <h1 className="text-2xl font-bold text-slate-900 tracking-tight mt-0.5">
                 Secure Concierge Checkout
               </h1>
               <p className="text-xs text-slate-500 mt-1">
-                All transactions are encrypted with 256-bit SSL and processed via authorized financial institutions.
+                All transactions are encrypted with 256-bit TLS and processed via PCI-DSS compliant gateways.
               </p>
             </div>
 
             {/* Payment Method Selector Tabs */}
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-3">
-                Select Payment Method
+              <label className="text-xs font-semibold text-slate-700 block mb-2.5">
+                Select Settlement Method
               </label>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 {/* Wallet Balance */}
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('wallet')}
-                  className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                  className={`p-3 rounded-lg border text-left flex flex-col justify-between transition-colors ${
                     paymentMethod === 'wallet'
-                      ? 'border-blue-600 bg-blue-50/50 shadow-xs ring-1 ring-blue-600'
+                      ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
                       : 'border-slate-200 hover:border-slate-300 bg-white'
                   }`}
                 >
-                  <Wallet className="w-5 h-5 text-blue-600 mb-2" />
+                  <Wallet className="w-4 h-4 text-slate-800 mb-2" />
                   <div>
                     <p className="text-xs font-bold text-slate-900">Wallet</p>
                     <p className="text-[10px] text-slate-500">{formatMoney(walletBalance)}</p>
@@ -123,13 +123,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('card')}
-                  className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                  className={`p-3 rounded-lg border text-left flex flex-col justify-between transition-colors ${
                     paymentMethod === 'card'
-                      ? 'border-blue-600 bg-blue-50/50 shadow-xs ring-1 ring-blue-600'
+                      ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
                       : 'border-slate-200 hover:border-slate-300 bg-white'
                   }`}
                 >
-                  <CreditCard className="w-5 h-5 text-amber-500 mb-2" />
+                  <CreditCard className="w-4 h-4 text-amber-500 mb-2" />
                   <div>
                     <p className="text-xs font-bold text-slate-900">Credit Card</p>
                     <p className="text-[10px] text-slate-500">Visa / MC</p>
@@ -140,13 +140,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('crypto')}
-                  className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                  className={`p-3 rounded-lg border text-left flex flex-col justify-between transition-colors ${
                     paymentMethod === 'crypto'
-                      ? 'border-blue-600 bg-blue-50/50 shadow-xs ring-1 ring-blue-600'
+                      ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
                       : 'border-slate-200 hover:border-slate-300 bg-white'
                   }`}
                 >
-                  <Coins className="w-5 h-5 text-emerald-500 mb-2" />
+                  <Coins className="w-4 h-4 text-emerald-600 mb-2" />
                   <div>
                     <p className="text-xs font-bold text-slate-900">Crypto</p>
                     <p className="text-[10px] text-slate-500">BTC / USDT</p>
@@ -157,16 +157,16 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setPaymentMethod('bank_transfer')}
-                  className={`p-3 rounded-xl border text-left flex flex-col justify-between transition-all ${
+                  className={`p-3 rounded-lg border text-left flex flex-col justify-between transition-colors ${
                     paymentMethod === 'bank_transfer'
-                      ? 'border-blue-600 bg-blue-50/50 shadow-xs ring-1 ring-blue-600'
+                      ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
                       : 'border-slate-200 hover:border-slate-300 bg-white'
                   }`}
                 >
-                  <Smartphone className="w-5 h-5 text-purple-600 mb-2" />
+                  <Smartphone className="w-4 h-4 text-slate-700 mb-2" />
                   <div>
-                    <p className="text-xs font-bold text-slate-900">Pay / Bank</p>
-                    <p className="text-[10px] text-slate-500">Instant</p>
+                    <p className="text-xs font-bold text-slate-900">Instant Pay</p>
+                    <p className="text-[10px] text-slate-500">Apple/Google</p>
                   </div>
                 </button>
               </div>
@@ -174,66 +174,66 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
             {/* Payment Method Specific Form */}
             {paymentMethod === 'wallet' && (
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs">
+              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-2 text-xs">
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-600">Available Account Wallet Balance:</span>
+                  <span className="text-slate-600">Available Wallet Balance:</span>
                   <span className="font-bold text-slate-900 text-sm">{formatMoney(walletBalance)}</span>
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-slate-600">Total Order Amount:</span>
-                  <span className="font-bold text-blue-600 text-sm">{formatMoney(cartTotal)}</span>
+                  <span className="font-bold text-slate-900 text-sm">{formatMoney(cartTotal)}</span>
                 </div>
                 {!isWalletSufficient ? (
                   <div className="pt-2 text-rose-600 flex items-center gap-1.5 font-medium">
-                    <AlertCircle className="w-4 h-4 shrink-0" />
-                    <span>Insufficient wallet balance. Please switch to Credit Card or Crypto.</span>
+                    <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                    <span>Insufficient balance. Please choose Card or Crypto, or top up wallet.</span>
                   </div>
                 ) : (
                   <div className="pt-2 text-emerald-600 flex items-center gap-1.5 font-medium">
-                    <CheckCircle2 className="w-4 h-4 shrink-0" />
-                    <span>Your wallet balance is sufficient for instant 1-click purchase!</span>
+                    <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                    <span>Your wallet balance covers this purchase in full.</span>
                   </div>
                 )}
               </div>
             )}
 
             {paymentMethod === 'card' && (
-              <div className="space-y-4 pt-2">
+              <div className="space-y-3 pt-1">
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1">Name on Card</label>
+                  <label className="text-xs font-semibold text-slate-700 block mb-1">Cardholder Name</label>
                   <input
                     type="text"
                     value={cardHolder}
                     onChange={e => setCardHolder(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-50 border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-900 focus:outline-none focus:border-slate-400"
                   />
                 </div>
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1">Card Number</label>
+                  <label className="text-xs font-semibold text-slate-700 block mb-1">Card Number</label>
                   <input
                     type="text"
                     value={cardNumber}
                     onChange={e => setCardNumber(e.target.value)}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 font-mono focus:outline-none focus:border-blue-500"
+                    className="w-full bg-slate-50 border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-900 font-mono focus:outline-none focus:border-slate-400"
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="text-xs font-bold text-slate-700 block mb-1">Expiration</label>
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">Expiration</label>
                     <input
                       type="text"
                       value={cardExp}
                       onChange={e => setCardExp(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 font-mono focus:outline-none focus:border-blue-500"
+                      className="w-full bg-slate-50 border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-900 font-mono focus:outline-none focus:border-slate-400"
                     />
                   </div>
                   <div>
-                    <label className="text-xs font-bold text-slate-700 block mb-1">CVV / CVC</label>
+                    <label className="text-xs font-semibold text-slate-700 block mb-1">CVV / CVC</label>
                     <input
                       type="password"
                       value={cardCvv}
                       onChange={e => setCardCvv(e.target.value)}
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-900 font-mono focus:outline-none focus:border-blue-500"
+                      className="w-full bg-slate-50 border border-slate-200 rounded px-2.5 py-1.5 text-xs text-slate-900 font-mono focus:outline-none focus:border-slate-400"
                     />
                   </div>
                 </div>
@@ -241,37 +241,37 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             )}
 
             {paymentMethod === 'crypto' && (
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3 text-xs">
-                <p className="font-bold text-slate-800">Direct Cryptocurrency Settlement</p>
-                <p className="text-slate-500 leading-relaxed">
-                  Support for Bitcoin (BTC), Ethereum (ETH), and USDT (TRC-20 / ERC-20). The transaction will be authenticated instantly via our automated clearing daemon.
+              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-2 text-xs">
+                <p className="font-bold text-slate-900">Cryptocurrency Settlement</p>
+                <p className="text-slate-600 text-[11px] leading-relaxed">
+                  Support for Bitcoin (BTC), Ethereum (ETH), and USDT (TRC-20 / ERC-20). Real-time block confirmation.
                 </p>
-                <div className="p-3 bg-white rounded-lg border border-slate-200 font-mono text-[11px] text-slate-700 break-all">
-                  Deposit Address: 0x71C...49bE2390a823
+                <div className="p-2.5 bg-white rounded border border-slate-200 font-mono text-[10px] text-slate-700 break-all">
+                  Deposit Address: 0x71C88291fB092A8321049bE2390a823
                 </div>
               </div>
             )}
 
             {paymentMethod === 'bank_transfer' && (
-              <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2 text-xs">
-                <p className="font-bold text-slate-800">Apple Pay, Google Pay & Instant Wire</p>
-                <p className="text-slate-500 leading-relaxed">
-                  Biometric touch/face ID checkout will prompt immediately upon clicking Place Order.
+              <div className="p-3.5 rounded-lg bg-slate-50 border border-slate-200 space-y-1.5 text-xs">
+                <p className="font-bold text-slate-900">Apple Pay, Google Pay & Instant Wire</p>
+                <p className="text-slate-600 text-[11px] leading-relaxed">
+                  Biometric touch or face authentication will launch on confirming the order.
                 </p>
               </div>
             )}
 
             {/* Compliance Checkboxes */}
-            <div className="pt-4 border-t border-slate-100 space-y-2 text-xs text-slate-700">
+            <div className="pt-3 border-t border-slate-100 space-y-2 text-xs text-slate-700">
               <label className="flex items-start gap-2 cursor-pointer">
                 <input
                   type="checkbox"
                   checked={agreeAge}
                   onChange={e => setAgreeAge(e.target.checked)}
-                  className="mt-0.5 rounded text-blue-600 focus:ring-0"
+                  className="mt-0.5 rounded text-slate-900 focus:ring-0"
                 />
                 <span>
-                  I confirm that I am at least 18 years of age (or legal age required in my jurisdiction) and legally authorized to play.
+                  I confirm that I am at least 18 years of age (or legal gaming age in my jurisdiction).
                 </span>
               </label>
 
@@ -280,7 +280,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                   type="checkbox"
                   checked={agreeTerms}
                   onChange={e => setAgreeTerms(e.target.checked)}
-                  className="mt-0.5 rounded text-blue-600 focus:ring-0"
+                  className="mt-0.5 rounded text-slate-900 focus:ring-0"
                 />
                 <span>
                   I authorize GlobalLotto's independent courier representative to physically purchase official tickets on my behalf.
@@ -292,13 +292,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             <button
               onClick={handlePlaceOrder}
               disabled={isProcessing}
-              className="w-full bg-amber-400 hover:bg-amber-300 disabled:bg-slate-300 text-slate-950 font-black py-4 rounded-xl text-base flex items-center justify-center gap-2 shadow-lg transition-all"
+              className="w-full bg-amber-500 hover:bg-amber-400 active:bg-amber-600 disabled:bg-slate-300 text-slate-950 font-bold py-3 rounded text-xs flex items-center justify-center gap-2 shadow-xs transition-colors"
             >
               {isProcessing ? (
                 <span>Securing Tickets with Authorized Courier...</span>
               ) : (
                 <>
-                  <Lock className="w-4 h-4 stroke-[2.5]" />
+                  <Lock className="w-3.5 h-3.5 stroke-[2.5]" />
                   <span>Confirm & Purchase Tickets ({formatMoney(cartTotal)})</span>
                 </>
               )}
@@ -308,8 +308,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
 
         {/* Right Column: Order Review Sidebar (5 cols) */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-md space-y-4">
-            <h3 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3 font-display">
+          <div className="bg-white rounded-lg border border-slate-200/90 p-5 shadow-xs space-y-4">
+            <h3 className="text-sm font-bold text-slate-900 border-b border-slate-100 pb-2.5">
               Order Review
             </h3>
 
@@ -317,7 +317,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               {cart.map(item => {
                 const lottery = lotteries.find(l => l.id === item.lotteryId);
                 return (
-                  <div key={item.id} className="py-3 first:pt-0 last:pb-0 space-y-1.5 text-xs">
+                  <div key={item.id} className="py-2.5 first:pt-0 last:pb-0 space-y-1 text-xs">
                     <div className="flex justify-between items-center">
                       <div className="flex items-center gap-1.5 font-bold text-slate-900">
                         <span>{lottery?.flag}</span>
@@ -327,12 +327,12 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
                     </div>
 
                     <div className="flex justify-between text-slate-500 text-[11px]">
-                      <span>{item.lines.length} Line(s) • {item.drawOption}</span>
+                      <span>{item.lines.length} Line(s) · {item.drawOption}</span>
                       <span>Draw: {item.drawDate.split(' ')[0]}</span>
                     </div>
 
                     {/* Compact Lines preview */}
-                    <div className="bg-slate-50 p-2 rounded-lg font-mono text-[10px] space-y-0.5 text-slate-600">
+                    <div className="bg-slate-50 p-2 rounded font-mono text-[10px] space-y-0.5 text-slate-600">
                       {item.lines.slice(0, 2).map((line, idx) => (
                         <div key={idx} className="flex justify-between">
                           <span>L{idx + 1}: {line.mainNumbers.join(', ')}</span>
@@ -349,7 +349,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
             </div>
 
             {/* Total Breakdown */}
-            <div className="pt-3 border-t border-slate-200 space-y-2 text-xs">
+            <div className="pt-2.5 border-t border-slate-200 space-y-1.5 text-xs">
               <div className="flex justify-between text-slate-600">
                 <span>Official Tickets Cost:</span>
                 <span>{formatMoney(cartTotal * 0.7)}</span>
@@ -360,20 +360,20 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({
               </div>
               <div className="pt-2 border-t border-slate-100 flex justify-between items-baseline">
                 <span className="text-sm font-bold text-slate-900">Total Payable:</span>
-                <span className="text-2xl font-black text-amber-500 font-display">
+                <span className="text-xl font-extrabold text-amber-500">
                   {formatMoney(cartTotal)}
                 </span>
               </div>
             </div>
 
             {/* Security Notice */}
-            <div className="pt-3 border-t border-slate-100 space-y-2 text-[11px] text-slate-500">
+            <div className="pt-2.5 border-t border-slate-100 space-y-1.5 text-[11px] text-slate-500">
               <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                 <span>Ticket scans uploaded before draw closure</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                 <span>100% money-back guarantee if ticket is unpurchased</span>
               </div>
             </div>
